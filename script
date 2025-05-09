@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "FROM python:3" › Dockerfile 
+echo "WORKDIR /home/app" >> Dockerfile 
+echo "COPY server.py ." >> Dockerfile 
+echo "RUN pip install Flask" >> Dockerfile 
+echo "EXPOSE 8090" >> Dockerfile 
+echo "CMD python3 /home/app/server.py" >> Dockerfile 
+docker stop samrun || true 
+docker rm samrun || true 
+docker build -t sample .
+docker run -t -d -P 8090:8090 --name samrun sample
