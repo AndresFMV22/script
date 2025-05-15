@@ -1,5 +1,2 @@
-FROM python:3.9
-WORKDIR /app
-COPY server.py hello.html ./
-EXPOSE 8000
-CMD ["python", "server.py"]
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
