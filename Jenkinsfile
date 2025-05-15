@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git 'https://github.com/AndresFMV22/script.git'  // ← reemplaza con tu repo real
+                git 'https://github.com/AndresFMV22/script.git'
             }
         }
 
@@ -28,3 +28,4 @@ pipeline {
         }
     }
 }
+
