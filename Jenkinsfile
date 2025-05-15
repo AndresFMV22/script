@@ -1,16 +1,29 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Clonar repositorio') {
             steps {
-                sh 'docker build -t telematica-app .'
+                git 'https://github.com/AndresFMV22/script.git'  // ← reemplaza con tu repo real
             }
         }
-        stage('Deploy') {
+
+        stage('Construir imagen Docker') {
             steps {
-                sh 'docker stop telematica-app || true'
-                sh 'docker rm telematica-app || true'
-                sh 'docker run -d --name telematica-app -p 80:8000 telematica-app'
+                sh 'docker build -t miapp .'
+            }
+        }
+
+        stage('Detener contenedor anterior') {
+            steps {
+                sh 'docker stop miapp || true'
+                sh 'docker rm miapp || true'
+            }
+        }
+
+        stage('Ejecutar contenedor') {
+            steps {
+                sh 'docker run -d --name miapp -p 8090:80 miapp'
             }
         }
     }
