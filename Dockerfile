@@ -1,9 +1,11 @@
 FROM python:3.8-slim
 
-COPY . /app
 WORKDIR /app
 
-RUN pip install flask
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
-EXPOSE 80
-CMD ["python3", "hello.py"]
+COPY . .
+
+EXPOSE 8090
+CMD ["python3", "server.py"]
