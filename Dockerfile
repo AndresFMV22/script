@@ -1,6 +1,7 @@
-FROM python:3.9-slim
-WORKDIR /app
-COPY . .
-RUN pip install flask
-EXPOSE 80
-CMD ["python", "server.py"]
+FROM python:3
+RUN pip install Flask
+WORKDIR /home/app
+COPY server.py .
+COPY templates ./templates
+EXPOSE 8080
+CMD python3 /home/app/server.py
