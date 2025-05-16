@@ -1,10 +1,14 @@
-from flask import Flask, send_file
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return send_file('index.html')
+    return 'Bienvenido al curso de Telemática'
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+@app.route('/render')
+def render():
+    return render_template('hello.html')
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
+
