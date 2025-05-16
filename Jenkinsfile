@@ -2,28 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar repositorio') {
+        stage('Build') {
             steps {
-                git 'https://github.com/AndresFMV22/script.git'
+                sh 'docker build -t myapp .'
             }
         }
-
-        stage('Construir imagen Docker') {
+        stage('Deploy') {
             steps {
-                sh 'docker build -t miapp .'
-            }
-        }
-
-        stage('Detener contenedor anterior') {
-            steps {
-                sh 'docker stop miapp || true'
-                sh 'docker rm miapp || true'
-            }
-        }
-
-        stage('Ejecutar contenedor') {
-            steps {
-                sh 'docker run -d --name miapp -p 8090:80 miapp'
+                sh 'docker stop myapp || true'
+                sh 'docker rm myapp || true'
+                sh 'docker run -d --name myapp -p 8090:8090 myapp'
             }
         }
     }
