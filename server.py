@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Bienvenido al curso de Telemática'
+    return 'PRUEBA EXITOSA'
 
 @app.route('/render')
 def render():
